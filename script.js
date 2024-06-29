@@ -26,6 +26,13 @@ function displayMyLibrary() {
     
 }
 
+const addBook = document.querySelector('#add');
+const bookForm = document.querySelector('form');
+
+addBook.addEventListener('click', () => {
+  bookForm.classList.remove('hidden');
+});
+
 addBookToLibrary('Illiad','Homer','968','No');
 addBookToLibrary('Moby-Dick','Herman Melville','635','Yes')
 displayMyLibrary();

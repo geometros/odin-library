@@ -8,11 +8,17 @@ html {
 }
 
 body {
-    display: flex;
+    
     width: 100vw;
     min-height: 100vh;
+    
+}
+
+.container {
+    display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
   
 table {
@@ -21,7 +27,11 @@ table {
     letter-spacing: 1px;
     font-size: 0.8rem;
     height: 100px;
-    margin: 40vh;
+    margin: 40vh 40vh 10vh 40vh;
+}
+
+.headers {
+    font-weight: bold;
 }
   
 td, th {
@@ -48,3 +58,17 @@ tr:nth-child(odd) td {
 caption {
     padding: 10px;
 }
+
+li {
+    list-style:none;
+}
+
+#add {
+    padding: 5px;
+    margin: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
