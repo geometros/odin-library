@@ -23,8 +23,23 @@ function displayMyLibrary() {
             cell.textContent = myLibrary[i][key];
             newRow.appendChild(cell)
         })
+        delButton = document.createElement('button')
+        delButton.textContent = 'Remove'
+        delButton.classList.add('delete')
+        delButton.id = `${i}` 
+        buttonCell = document.createElement('td')
+        buttonCell.appendChild(delButton)
+        newRow.appendChild(buttonCell)
         bookTable.appendChild(newRow)
     }
+
+    const removeBook = document.getElementsByClassName('delete');
+    [...removeBook].forEach((button) => {
+        button.addEventListener('click', function(){
+        myLibrary.splice(button.id,1)
+        displayMyLibrary()
+    })
+})
     
 }
 
@@ -58,4 +73,6 @@ newBookForm.addEventListener('submit', (e) => {
 addBookToLibrary('Illiad','Homer','968','No')
 addBookToLibrary('Moby-Dick','Herman Melville','635','Yes')
 displayMyLibrary()
+
+
 
