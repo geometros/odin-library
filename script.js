@@ -16,6 +16,7 @@ function displayMyLibrary() {
     let bookTable = document.querySelector('table');
     let bookHeader = document.querySelector('.headers')
     bookTable.replaceChildren(bookHeader)
+    
     for (let i=0;i<myLibrary.length;i++) {
         const newRow = document.createElement('tr');
         ['title','author','length','readStatus'].forEach(key => {
@@ -23,24 +24,46 @@ function displayMyLibrary() {
             cell.textContent = myLibrary[i][key];
             newRow.appendChild(cell)
         })
+        
         delButton = document.createElement('button')
         delButton.textContent = 'Remove'
         delButton.classList.add('delete')
-        delButton.id = `${i}` 
-        buttonCell = document.createElement('td')
-        buttonCell.appendChild(delButton)
-        newRow.appendChild(buttonCell)
+        delButton.id = `${i}`
+
+        readToggle = document.createElement('button')
+        readToggle.textContent = 'Read'
+        readToggle.classList.add('readCheck') 
+        readToggle.id = `${i+0.5}`
+        
+        readButtonCell = document.createElement('td')
+        readButtonCell.appendChild(readToggle) 
+        newRow.appendChild(readButtonCell)
+        
+        delButtonCell = document.createElement('td')
+        delButtonCell.appendChild(delButton)
+        newRow.appendChild(delButtonCell)
+        
         bookTable.appendChild(newRow)
     }
 
     const removeBook = document.getElementsByClassName('delete');
-    [...removeBook].forEach((button) => {
+    ;[...removeBook].forEach((button) => {
         button.addEventListener('click', function(){
-        myLibrary.splice(button.id,1)
-        displayMyLibrary()
+            myLibrary.splice(button.id,1)
+            displayMyLibrary()
+        })
     })
-})
-    
+
+    const toggleRead = document.getElementsByClassName('readCheck')
+    ;[...toggleRead].forEach((button) => {
+        button.addEventListener('click', function(){
+            let i = button.id.replace(/\.5$/, '');
+            console.log(i,myLibrary[i],typeof(myLibrary[i]))
+            if (myLibrary[i].readStatus == 'No') {myLibrary[i].readStatus = 'Yes'}
+            else {myLibrary[i].readStatus = 'No'}
+            displayMyLibrary()
+        })
+    })
 }
 
 const addBook = document.querySelector('#add');
